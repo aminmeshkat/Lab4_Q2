@@ -7,14 +7,32 @@ Original file is located at
     https://colab.research.google.com/drive/1Nv9Tf8ctLRiux_RUhl7izcKYRXQfQ84T
 """
 
-#LAB4 Q2
+# Q2 part1
 
 import os
 
-def chk(dirname, file):
-  for file_name in os.listdir(directory_name):
-    paths = os.path.join(directory_name,file_name)
-    if os.path.isfile(paths):
-      print(paths)
+def srch(d):
+  for item in os.listdir(d):
+    path = os.path.join(d,item)
+    if os.path.isfile(path):
+      if path[-3:] == "mp3":
+        print(path)
     else:
-      chk(dirname, file)
+      srch(path)
+
+srch("/content")
+
+# Q2 Part 2
+import hashlib
+import os
+
+def srch(d):
+  for item in os.listdir(d):
+    path = os.path.join(d,item)
+    if os.path.isfile(path):
+      if path[-3:] == "mp3":
+        print(path , hashlib.md5(open(path,"rb").read()))
+    else:
+      srch(path)
+
+srch("/content")
